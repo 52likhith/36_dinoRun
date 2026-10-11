@@ -54,6 +54,3 @@ python game.py
 
 The `chat_history/` folder contains the original JSON export and a readable PDF transcript of the Copilot conversation. Keep the before- and after-changes gameplay recordings with your lab submission, in the location required by your instructor.
 
-## Repository
-
-Submit the finished code through your personal GitHub repository. Do not raise a pull request to the original `SETAPESU26` repository.
