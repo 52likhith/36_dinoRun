@@ -1,91 +1,59 @@
 # Dino Run Repair Lab
 
-This project is a single-file side-scrolling endless-runner clone using **Pygame**. It introduces students to obstacle spawning, jump-state tracking, and simple file-based persistence using a small, readable object-oriented codebase.
+A side-scrolling endless-runner game built with Python and Pygame. This project was completed for VibeCoding Lab 4, Problem #36.
 
----
+## Features
 
-## What's Provided
+- Fixed the high-score comparison so a new best score is saved to `dino_highscore.txt`.
+- Changed the dino's color while it is airborne.
+- Added a popup when the dino successfully passes an obstacle.
+- Implemented double jump.
+- Kept obstacle spawning, increasing game speed, collision detection, game-over, and restart behavior.
 
-A working Dino Run game with:
+## Requirements
 
-- A dino that jumps over obstacles, with gravity and ground collision
-- Obstacles that spawn at random intervals and sizes and scroll past at an increasing speed
-- A score that climbs over time and a game-speed ramp that kicks in every 300 points
-- A high score that's meant to persist between runs, saved to a local `dino_highscore.txt` file
+- Python 3.10 or later
+- Pygame
 
-It has **one deliberate bug** and **three optional features** left as empty functions. You are expected to **analyze**, **interact with an AI assistant**, and **complete/fix** the game to make it fully functional and more interesting.
+## Run the Game
 
-### **Use an LLM (e.g. ChatGPT or Claude) as your debugging and pair-programming partner for this lab.**
-
----
-
-## Getting Started
-
-### Setup
-
-1. Make sure you have Python 3.10+ installed.
-2. Install dependencies:
+Install Pygame:
 
 ```bash
 pip install pygame
 ```
 
-3. Run the game:
+Start the game:
 
 ```bash
 python game.py
 ```
 
-**Controls:** Space/Up/W to start and jump, same keys to restart after Game Over.
+**Controls:** Press Space, Up Arrow, or W to start and jump. Use the same keys to restart after Game Over.
 
----
+## Project Structure
 
-## Tasks to Complete
-
-Each task must be completed using an iterative process involving LLM suggestions and your critical code review.
-
-### Task 1: Fix the high-score bug
-
-> The high score is supposed to update — and be saved to `dino_highscore.txt` — whenever the current run's score beats the previous best. In the current build, the high score never updates no matter how well you play, because the comparison that decides whether to update it is backwards. Look at the `if` condition right after a collision is detected in `Game.update`, and check which side of the comparison should be "the run that just ended" and which should be "the best score seen so far."
-
-### Task 2: Implement `dino_tint(on_ground)`
-
-> Called once per frame in `Dino.draw`, as `color = dino_tint(self.on_ground) or self.color`. It receives a boolean: `True` while the dino is standing on the ground, `False` while it's airborne. Return an `(r, g, b)` color, or `None` to keep the default green. Idea: give the dino a different color while it's mid-jump.
-
-### Task 3: Implement `on_obstacle_passed(obstacle, score)`
-
-> Called from `Game.update` exactly once per obstacle, the first frame that obstacle's right edge scrolls past the dino's left edge (i.e. it's been successfully jumped, not just spawned or removed off-screen). It receives the `Obstacle` that was passed and the score at that moment. Its return value is ignored. Idea: a small "+1" popup, or a running combo counter for consecutive obstacles cleared without a hit.
-
-### Task 4: Implement `max_jumps()`
-
-> Called every time the player tries to jump, as part of `if self.jump_count < (max_jumps() or 1):` in `Dino.jump`. It takes no arguments and should return an integer — the number of jumps the dino gets before it must touch the ground again — or `None` for the default of 1 (no double jump). The `jump_count` bookkeeping (incrementing on jump, resetting to 0 on landing) is already implemented; you only need to raise the limit. Idea: return `2` for a double jump.
-
----
-
-## Expected Behavior
-
-- The dino jumps only while grounded, unless `max_jumps()` allows more jumps in the air
-- Obstacles spawn at randomized intervals and sizes, and the game gets gradually faster as the score climbs
-- Colliding with an obstacle ends the run and shows a Game Over screen
-- The high score updates and is saved to disk whenever the current run beats it, and is loaded back the next time the game starts
-- Score never goes negative and the game restarts cleanly on `Space`
-
----
-
-## Folder Structure
-
-```
-dino-run/
+```text
+36_dinoRun/
 ├── game.py
-└── README.md
+├── README.md
+├── .gitignore
+├── dino_highscore.txt
+└── chat_history/
+    ├── DinoRun_Copilot_Chat_History.pdf
+    └── chat.json
 ```
 
----
+- `game.py`: Main game implementation.
+- `README.md`: Project overview and instructions.
+- `.gitignore`: Files excluded from Git.
+- `dino_highscore.txt`: Local high-score save file, if tracked or present.
+- `chat_history/`: Copilot chat export and readable transcript for lab evidence.
 
-## Submission Checklist
+## Lab Evidence
 
-Submission is only the following three things:
+The `chat_history/` folder contains the original JSON export and a readable PDF transcript of the Copilot conversation. Keep the before- and after-changes gameplay recordings with your lab submission, in the location required by your instructor.
 
-- [] A 10-second video of gameplay **before** your changes, showing the bug/broken behavior
-- [] A 10-second video of gameplay **after** your changes, showing the bug fixed and the new features working
-- [] The Chat/LLM used page link, with the complete chat history
+## Repository
+
+Submit the finished code through your personal GitHub repository. Do not raise a pull request to the original `SETAPESU26` repository.
